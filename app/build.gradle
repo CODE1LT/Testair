@@ -1,35 +1,210 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
+apply plugin: "androidx.navigation.safeargs"
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+def versionMajor = 1
+def versionMinor = 2
+def buildNumber = Integer.valueOf(System.env.BUILD_NUMBER ?: 0)
+def computedVersionName = String.format('%d.%d.%d', versionMajor, versionMinor, buildNumber)
+def computedVersionCode = (versionMajor * 100000) + (versionMinor * 10000) + buildNumber
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "lt.code1.testair"
-        minSdkVersion 21
+        applicationId 'lt.code1.testair'
+        minSdkVersion 23
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        versionCode computedVersionCode
+        versionName computedVersionName
+        testInstrumentationRunner "lt.code1.testair.CustomTestRunner"
+        applicationVariants.all { variant ->
+            variant.outputs.all { output ->
+                outputFileName = "Testair-${variant.versionName}.apk"
+            }
+        }
+        multiDexEnabled true
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas".toString())
+            }
+        }
     }
+
+    flavorDimensions "configuration", "services"
+
+    productFlavors {
+        mockServices {
+            dimension "services"
+            versionNameSuffix "-ms"
+            buildConfigField 'lt.code1.testair.app.ServicesDimension', 'SERVICE_TYPE', "lt.code1.testair.app.ServicesDimension.MOCK"
+        }
+        externalServices {
+            dimension "services"
+            versionNameSuffix "-es"
+            buildConfigField 'lt.code1.testair.app.ServicesDimension', 'SERVICE_TYPE', "lt.code1.testair.app.ServicesDimension.EXTERNAL"
+        }
+        devConfiguration {
+            dimension "configuration"
+            versionNameSuffix "-dc"
+            buildConfigField 'lt.code1.testair.app.ConfigurationDimension', 'CONFIGURATION_TYPE', "lt.code1.testair.app.ConfigurationDimension.DEV"
+        }
+        prodConfiguration {
+            dimension "configuration"
+            versionNameSuffix "-pc"
+            buildConfigField 'lt.code1.testair.app.ConfigurationDimension', 'CONFIGURATION_TYPE', "lt.code1.testair.app.ConfigurationDimension.PROD"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            testCoverageEnabled true
+            versionNameSuffix "-debug"
+        }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    sourceSets.test.resources.srcDirs += ["src/main/assets"]
+
+    testOptions {
+        animationsDisabled true
+
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    lintOptions {
+        checkAllWarnings true
+        warningsAsErrors true
+        warning 'NewerVersionAvailable'
+        disable 'SyntheticAccessor', 'ObsoleteLintCustomCheck'
+        abortOnError false
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
 }
 
+def androidx_version = '1.1.0'
+def okhttp_version = '4.1.0'
+def retrofit_version = '2.6.2'
+def dagger_version = '2.25.2'
+def room_version = '2.2.2'
+def nav_version = "2.1.0"
+def moshi_version = '1.8.0' //1.9.1 can't convert request body
+
 dependencies {
+    //Android basic stuff
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation "androidx.appcompat:appcompat:$androidx_version"
+    implementation "androidx.core:core-ktx:$androidx_version"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'com.snakydesign.livedataextensions:lives:1.3.0'
+
+    //Lifecycle
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+    kapt 'androidx.lifecycle:lifecycle-common-java8:2.1.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.1.0'
+
+    //Networking
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation("com.squareup.moshi:moshi-kotlin:$moshi_version") {
+        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-reflect'
+    }
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+    implementation "com.squareup.okhttp3:mockwebserver:$okhttp_version"
+
+    //Dagger
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    //Room
+    api "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    //Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    //Logging
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //Android testing
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation "androidx.test:core:1.2.0"
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'org.mockito:mockito-android:3.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
+    androidTestImplementation "com.google.truth:truth:1.0"
+    implementation "com.google.truth:truth:1.0"
+    androidTestUtil 'androidx.test:orchestrator:1.2.0'
+    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.2'
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+    androidTestImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+    androidTestImplementation "com.google.dagger:dagger:$dagger_version"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$dagger_version"
+    androidTestImplementation "com.google.dagger:dagger-android:$dagger_version"
+    androidTestImplementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kaptAndroidTest "com.google.dagger:dagger-android-processor:$dagger_version"
+    androidTestImplementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$okhttp_version"
+
+
+    //Testing
+    testImplementation ("androidx.arch.core:core-testing:2.1.0"){
+        exclude group: 'org.hamcrest'
+    }
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.2'
+    testImplementation ("junit:junit:4.12"){
+        exclude group: 'org.hamcrest'
+    }
+    testImplementation 'androidx.test:core:1.2.0'
+    implementation 'androidx.fragment:fragment:1.2.0-rc02'
+    implementation 'androidx.fragment:fragment-testing:1.2.0-rc02'
+    testImplementation 'org.robolectric:robolectric:4.3.1'
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.2.0'
+    testImplementation 'org.mockito:mockito-core:3.2.0'
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+    testImplementation "com.google.truth:truth:1.0"
+    testImplementation 'org.mockito:mockito-inline:3.2.0'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.2.2'
+
+    //3rd party UI libs
+    implementation 'com.airbnb.android:lottie:3.3.0'
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
 }
