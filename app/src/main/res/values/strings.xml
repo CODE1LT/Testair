@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Testair</string>
     <string name="f_city_search_city_name_et_hint">ENTER CITY NAME</string>
+    <string name="f_city_search_history_bt_text">VIEW HISTORY</string>
 </resources>

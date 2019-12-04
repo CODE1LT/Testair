@@ -7,4 +7,6 @@
     <color name="colorGradientBackgroundCenter">#49BC6E</color>
     <color name="colorGradientBackgroundEnd">#96C93D</color>
     <color name="white">#ffffff</color>
+    <color name="green">#7ccb80</color>
+    <color name="lightGreen">#96c93d</color>
 </resources>
