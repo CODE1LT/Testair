@@ -9,6 +9,16 @@
         android:background="@drawable/gradient_background"
         tools:context=".features.citySearch.CitySearchFragment">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/f_users_list_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_up"
+            android:theme="@style/AppTheme"
+            app:popupTheme="@style/AppTheme"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
