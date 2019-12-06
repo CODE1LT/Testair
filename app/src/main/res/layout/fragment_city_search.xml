@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="80dp"
             android:paddingRight="80dp"
+            android:layout_marginBottom="10dp"
             android:src="@drawable/logo"
             app:layout_constraintBottom_toTopOf="@id/f_city_search_city_name_et"
             app:layout_constraintLeft_toLeftOf="parent"
