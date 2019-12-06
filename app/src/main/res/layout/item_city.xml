@@ -8,7 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/full_rounded_shape"
-        android:clipToPadding="true">
+        android:clipToPadding="true"
+        tools:background="@color/green">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/top_guideline"
