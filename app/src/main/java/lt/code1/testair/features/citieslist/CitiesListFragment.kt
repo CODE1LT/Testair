@@ -3,6 +3,7 @@ package lt.code1.testair.features.citieslist
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import androidx.navigation.fragment.navArgs
 import lt.code1.testair.NavigationHost
 import lt.code1.testair.R
 import lt.code1.testair.base.BaseFragment
@@ -16,6 +17,7 @@ class CitiesListFragment : BaseFragment() {
     private lateinit var fragmentCityListBinding: FragmentCitiesListBinding
     override val layoutId = R.layout.fragment_cities_list
     override val viewModelClass = CitiesListFragmentViewModel::class
+    private val args: CitiesListFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Timber.d("onCreate()")
@@ -32,12 +34,23 @@ class CitiesListFragment : BaseFragment() {
         Timber.d("onViewCreated()")
         super.onViewCreated(view, savedInstanceState)
         addReferencesToViewsAndViewModel()
+        loadCityData()
     }
 
     private fun addReferencesToViewsAndViewModel() {
         Timber.d("addReferencesToViewsAndViewModel()")
         citiesListFragmentViewModel = getViewModel() as CitiesListFragmentViewModel
         fragmentCityListBinding = viewDataBinding as FragmentCitiesListBinding
+    }
+
+    private fun loadCityData() {
+        Timber.d("loadUserData()")
+        args.cityName?.let { cityName ->
+
+            var tmp = cityName
+//            userDetailsFragmentViewModel.viewLiveData.value?.userId = userId
+//            userDetailsFragmentViewModel.loadUserData(userId)
+        }
     }
 
     override fun onDetach() {

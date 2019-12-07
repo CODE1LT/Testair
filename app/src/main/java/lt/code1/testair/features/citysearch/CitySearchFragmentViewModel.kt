@@ -18,7 +18,7 @@ class CitySearchFragmentViewModel @Inject constructor(
     init {
         setHistoryButtonText()
     }
-    
+
     private fun setHistoryButtonText() {
         stringsProvider.addToLiveDataSource(viewLiveData, StringId.HISTORY_BUTTON_TEXT) {
             viewLiveDataValue.historyButtonTitle = it
