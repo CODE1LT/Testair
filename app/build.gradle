@@ -14,7 +14,7 @@ android {
     compileSdkVersion 29
     defaultConfig {
         applicationId 'lt.code1.testair'
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 29
         versionCode computedVersionCode
         versionName computedVersionName

@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="lt.code1.testair">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +13,8 @@
         android:supportsRtl="true"
         android:name=".app.App"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        android:networkSecurityConfig="@xml/network_security_config">
         <activity
             android:name="lt.code1.testair.MainActivity">
             <intent-filter>
