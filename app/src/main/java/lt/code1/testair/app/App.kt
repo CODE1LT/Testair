@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.multidex.MultiDex
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
+import lt.code1.testair.logging.Logger
 import javax.inject.Inject
 
 open class App : DaggerApplication() {
