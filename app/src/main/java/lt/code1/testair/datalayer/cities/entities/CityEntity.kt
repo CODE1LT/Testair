@@ -8,5 +8,5 @@ data class CityEntity(
     @PrimaryKey(autoGenerate = false)
     val rowId: Long,
     val name: String,
-    val cityId: String
+    val cityId: Long
 )

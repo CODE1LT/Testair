@@ -5,8 +5,8 @@ package lt.code1.testair.datalayer.core
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import lt.ba.livedataexample.archextensions.SingleResourceLiveData
-import lt.ba.livedataexample.archextensions.toSingleResourceLiveData
+import lt.code1.testair.archextensions.SingleResourceLiveData
+import lt.code1.testair.archextensions.toSingleResourceLiveData
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
