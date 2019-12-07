@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package lt.ba.livedataexample.archextensions
+package lt.code1.testair.archextensions
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

@@ -9,7 +9,7 @@ import kotlin.coroutines.CoroutineContext
 import androidx.navigation.findNavController
 import lt.code1.testair.base.BaseActivity
 import lt.code1.testair.databinding.ActivityMainBinding
-import lt.code1.testair.features.userslist.UsersListFragmentDirections
+import lt.code1.testair.features.citysearch.CitySearchFragmentDirections
 import timber.log.Timber
 
 
@@ -36,25 +36,14 @@ class MainActivity : BaseActivity(), CoroutineScope, NavigationHost,
         mainActivityViewDataBinding = viewDataBinding as ActivityMainBinding
     }
 
-    override fun onAddUserMenuItemClick() {
-        Timber.d("onAddUserMenuItemClick()")
-        val action = UsersListFragmentDirections.actionUsersListToUserDetails(null)
-        findNavController(R.id.a_main_nav_host_fragment).navigate(action)
-    }
-
-    override fun onDeleteUserMenuItemClick() {
-        Timber.d("onDeleteUserMenuItemClick()")
-        onSupportNavigateUp()
-    }
-
     override fun onUpClick() {
         Timber.d("onUpClick()")
         onSupportNavigateUp()
     }
 
-    override fun onUserItemClicked(userId: String) {
+    override fun onSearchButtonClicked(cityName: String) {
         Timber.d("onUserItemClicked()")
-        val action = UsersListFragmentDirections.actionUsersListToUserDetails(userId)
+        val action = CitySearchFragmentDirections.actionCitySearchToCitiesList(cityName)
         findNavController(R.id.a_main_nav_host_fragment).navigate(action)
     }
 
