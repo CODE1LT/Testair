@@ -14,7 +14,6 @@ class LocalStringsProvider @Inject constructor(private val context: Context) : S
 
     private fun getStringResourceId(stringId: StringId) =
         when (stringId) {
-            StringId.CITY_SEARCH_HINT -> R.string.f_city_search_city_name_et_hint
             StringId.HISTORY_BUTTON_TEXT -> R.string.f_city_search_history_bt_text
         }
 }
