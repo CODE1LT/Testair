@@ -7,8 +7,7 @@ import javax.inject.Inject
 class CityEntityMapper @Inject constructor() :
     Function1<GetCityResponse, @JvmSuppressWildcards List<CitiesListEntity>> {
 
-    override fun invoke(cityResponse: GetCityResponse): List<CitiesListEntity> {
-
+    override fun invoke(cityResponse: GetCityResponse): @JvmSuppressWildcards List<CitiesListEntity> {
         return listOf(
             CitiesListEntity(
                 id = cityResponse.id,
@@ -17,8 +16,8 @@ class CityEntityMapper @Inject constructor() :
                 temp = cityResponse.main?.temp,
                 temp_min = cityResponse.main?.temp_min,
                 temp_max = cityResponse.main?.temp_max,
-                icon = cityResponse.weather[0].icon,
-                description = cityResponse.weather[0].description
+                icon = cityResponse.weather?.get(0)?.icon,
+                description = cityResponse.weather?.get(0)?.description
             )
         )
     }

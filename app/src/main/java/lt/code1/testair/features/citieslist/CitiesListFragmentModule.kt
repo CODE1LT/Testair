@@ -6,6 +6,12 @@ import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
 import lt.code1.testair.archextensions.ViewModelKey
+import lt.code1.testair.datalayer.cities.entities.CitiesListEntity
+import lt.code1.testair.datalayer.core.Resource
+import lt.code1.testair.domain.RetrieveSingleInteractorWithParams
+import lt.code1.testair.features.citieslist.data.City
+import lt.code1.testair.features.citieslist.interactors.CitiesListMapper
+import lt.code1.testair.features.citieslist.interactors.FetchCityInteractor
 import javax.inject.Named
 
 @Module
@@ -28,5 +34,14 @@ abstract class CitiesListFragmentModule {
     @IntoMap
     @ViewModelKey(CitiesListFragmentViewModel::class)
     abstract fun provideViewModel(@Named(CITIES_LIST_FRAGMENT_VIEW_MODEL) citiesListFragmentViewModel: CitiesListFragmentViewModel): ViewModel
-    
+
+    @Binds
+    abstract fun provideFetchInteractor(fetchCityInteractor: FetchCityInteractor)
+            : RetrieveSingleInteractorWithParams<String, Resource<@JvmSuppressWildcards List<City>>>
+
+    @Binds
+    abstract fun provideCitiesListMapper(
+        citiesListMapper: CitiesListMapper
+    ): @JvmSuppressWildcards Function1<@JvmSuppressWildcards List<CitiesListEntity>, @JvmSuppressWildcards List<City>>
+
 }

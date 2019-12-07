@@ -10,8 +10,9 @@ import javax.inject.Inject
 
 class FetchCityInteractor @Inject constructor(
     private val citiesRepository: CitiesRepository,
-    private val citiesListMapper: Function1<@JvmSuppressWildcards List<CitiesListEntity>, @JvmSuppressWildcards List<City>>
-) : RetrieveSingleInteractorWithParams<String, Resource<List<City>>> {
+    private val citiesListMapper: @JvmSuppressWildcards Function1<@JvmSuppressWildcards List<CitiesListEntity>, @JvmSuppressWildcards List<City>>
+) : RetrieveSingleInteractorWithParams<String, Resource<@JvmSuppressWildcards List<City>>> {
 
-    override fun getSingle(params: String) = citiesRepository.fetchCity(params).mapSingleResource(citiesListMapper)
+    override fun getSingle(params: String) =
+        citiesRepository.fetchCity(params).mapSingleResource(citiesListMapper)
 }

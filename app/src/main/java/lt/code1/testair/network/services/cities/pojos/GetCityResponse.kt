@@ -7,7 +7,7 @@ data class GetCityResponse(
     @Json(name = "name") val name: String?,
     @Json(name = "dt") val dt: Long?,
     @Json(name = "main") val main: Main?,
-    @Json(name = "weather") val weather: List<Weather>
+    @Json(name = "weather") val weather: List<Weather>?
 )
 
 data class Main (

@@ -5,12 +5,12 @@ import lt.code1.testair.features.citieslist.data.City
 import javax.inject.Inject
 
 class CitiesListMapper @Inject constructor() :
-    Function1<@JvmSuppressWildcards List<CitiesListEntity>, @JvmSuppressWildcards List<City>> {
+    @JvmSuppressWildcards Function1<@JvmSuppressWildcards List<CitiesListEntity>, @JvmSuppressWildcards List<City>> {
 
     override fun invoke(citiesList: List<CitiesListEntity>): List<City> {
 
         val citiesListMapped = arrayListOf<City>()
-        citiesListMapped.forEach { citiesListItem ->
+        citiesList.forEach { citiesListItem ->
             citiesListMapped.add(
                 City(
                     id = citiesListItem.id,

@@ -18,7 +18,7 @@ interface CitiesRepository {
 class CitiesRepositoryImpl @Inject constructor(
     private val getCityService: GetCityService,
     private val fetchCityRequestMediator: RequestMediator<GetCityResponse>,
-    private val cityEntityMapper: Function1<GetCityResponse, @JvmSuppressWildcards List<CitiesListEntity>>,
+    private val cityEntityMapper: @JvmSuppressWildcards Function1<GetCityResponse, @JvmSuppressWildcards List<CitiesListEntity>>,
     private val coroutineContext: CoroutineContext
 ) : CitiesRepository {
 
