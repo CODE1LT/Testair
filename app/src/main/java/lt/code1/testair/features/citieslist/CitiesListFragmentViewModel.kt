@@ -13,26 +13,8 @@ class CitiesListFragmentViewModel @Inject constructor(
 
     val viewLiveData = ViewLiveData(CitiesListFragmentViewLiveData())
     private val viewLiveDataValue = viewLiveData.value
-    val cityNameSubmitedEvent = SingleLiveEvent<String>()
 
-//    init {
-//        setSearchHintText()
-//        setHistoryButtonText()
-//    }
-//
-//    private fun setSearchHintText() {
-//        stringsProvider.addToLiveDataSource(viewLiveData, StringId.CITY_SEARCH_HINT) {
-//            viewLiveDataValue.searchHint = it
-//        }
-//    }
-//
-//    private fun setHistoryButtonText() {
-//        stringsProvider.addToLiveDataSource(viewLiveData, StringId.HISTORY_BUTTON_TEXT) {
-//            viewLiveDataValue.historyButtonTitle = it
-//        }
-//    }
 
-    fun onSearchButtonClicked() {
-        cityNameSubmitedEvent.postValue(viewLiveDataValue.searchText)
-    }
+
+
 }
