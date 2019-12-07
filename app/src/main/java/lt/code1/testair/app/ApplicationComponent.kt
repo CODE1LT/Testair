@@ -7,6 +7,7 @@ import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import dagger.android.support.AndroidSupportInjectionModule
 import lt.code1.testair.datalayer.RepositoriesModule
+import lt.code1.testair.logging.LoggerModule
 import lt.code1.testair.network.NetworkModule
 
 @ApplicationScope
