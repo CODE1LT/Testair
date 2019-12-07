@@ -45,12 +45,7 @@ class CitiesListFragment : BaseFragment() {
 
     private fun loadCityData() {
         Timber.d("loadUserData()")
-        args.cityName?.let { cityName ->
-
-            var tmp = cityName
-//            userDetailsFragmentViewModel.viewLiveData.value?.userId = userId
-//            userDetailsFragmentViewModel.loadUserData(userId)
-        }
+        args.cityName?.let { citiesListFragmentViewModel.getCity(it) }
     }
 
     override fun onDetach() {

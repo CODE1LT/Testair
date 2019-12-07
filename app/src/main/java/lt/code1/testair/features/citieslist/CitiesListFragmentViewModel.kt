@@ -17,35 +17,31 @@ class CitiesListFragmentViewModel @Inject constructor(
     val viewLiveData = ViewLiveData(CitiesListFragmentViewLiveData())
     private val viewLiveDataValue = viewLiveData.value
 
-    val observer = Observer<Resource<List<City>>> { resource ->
-        var tmp = resource
-    }
-
-    init {
-        getCity("London,LTU")
-    }
-
+    //TODO remove, for testing only
+    val observer = Observer<CitiesListFragmentViewLiveData> {}
 
     fun getCity(cityAndCountryName: String) {
         viewLiveData.addSingleResourceSource(
             fetchCityInteractor.getSingle(cityAndCountryName),
             { it -> manageFetchCityDataState(it) },
             { manageFetchCityLoadingState() },
-            { _, _ -> manageFetchCityErrorState() }
+            { error, _ -> manageFetchCityErrorState(error) }
         )
         viewLiveData.notifyLiveDataObservers()
-        fetchCityInteractor.getSingle(cityAndCountryName).observeForever(observer)
+        viewLiveData.observeForever(observer)
     }
 
 
     private fun manageFetchCityLoadingState() {
+        var tmp = 10
     }
 
     private fun manageFetchCityDataState(citiesList: List<City>) {
         var tmp = citiesList
     }
 
-    private fun manageFetchCityErrorState() {
+    private fun manageFetchCityErrorState(error: Throwable) {
+        var tmp = error.message
     }
 
 
