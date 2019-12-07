@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/citiesList"
-        android:name="lt.code1.testair.features.citiesList.CitiesListFragment"
+        android:name="lt.code1.testair.features.citieslist.CitiesListFragment"
         android:label="fragment_cities_list"
         tools:layout="@layout/fragment_cities_list" >
         <argument
