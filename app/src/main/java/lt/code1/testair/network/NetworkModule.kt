@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit
 import lt.code1.testair.network.services.MockWebServer
 
 private const val BASE_API_URL = "http://api.openweathermap.org/"
+const val BASE_WEATHER_ICON_API_URL = "http://openweathermap.org/img/wn/"
 const val APPID = "7587eaff3affbf8e56a81da4d6c51d06"
 private const val READ_TIMEOUT_S = 30L
 private const val CONNECT_TIMEOUT_S = 30L
