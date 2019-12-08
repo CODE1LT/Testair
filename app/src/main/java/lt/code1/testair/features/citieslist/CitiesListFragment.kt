@@ -3,8 +3,11 @@ package lt.code1.testair.features.citieslist
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import es.dmoral.toasty.Toasty
 import lt.code1.testair.NavigationHost
 import lt.code1.testair.R
 import lt.code1.testair.base.BaseFragment
@@ -36,6 +39,7 @@ class CitiesListFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         addReferencesToViewsAndViewModel()
         setupActionBar()
+        observeNotificationEvent()
         loadCityData()
     }
 
@@ -56,6 +60,28 @@ class CitiesListFragment : BaseFragment() {
     private fun onUpClick() {
         Timber.d("onUpClick()")
         navigationHost?.onUpClick()
+    }
+
+    private fun observeNotificationEvent() {
+        Timber.d("observeNotificationEvent()")
+        citiesListFragmentViewModel.notificationEvent.observe(viewLifecycleOwner, Observer { notification ->
+            if (!notification.isOperationSuccessfull) {
+                showFailureNotification(notification.unsuccessMessage)
+            }
+        })
+    }
+
+    private fun showFailureNotification(message: String) {
+        Toasty.error(
+            requireActivity(),
+            message,
+            Toast.LENGTH_SHORT,
+            true
+        )
+            .apply {
+                setGravity(Gravity.CENTER, 0, 0)
+                show()
+            }
     }
 
     private fun loadCityData() {
