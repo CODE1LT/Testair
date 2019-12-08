@@ -8,7 +8,7 @@ private const val CITIES_SEARCH_HISTORY_SIZE_LIMIT = 5
 @Dao
 abstract class CitiesDao {
 
-    @Query("SELECT * FROM cities")
+    @Query("SELECT * FROM cities ORDER BY rowId DESC")
     abstract fun queryCities(): List<CityEntity>?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
