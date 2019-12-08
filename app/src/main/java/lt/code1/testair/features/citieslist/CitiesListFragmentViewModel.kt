@@ -1,6 +1,5 @@
 package lt.code1.testair.features.citieslist
 
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import lt.code1.testair.FragmentsListener
 import lt.code1.testair.R
@@ -10,31 +9,25 @@ import lt.code1.testair.datalayer.core.Resource
 import lt.code1.testair.domain.RetrieveSingleInteractorWithParams
 import lt.code1.testair.features.citieslist.data.City
 import lt.code1.testair.features.shared.Notification
-import lt.code1.testair.utils.stringsprovider.StringsProvider
 import javax.inject.Inject
 
 class CitiesListFragmentViewModel @Inject constructor(
     private val fragmentsListener: FragmentsListener,
-    private val fetchCityInteractor: RetrieveSingleInteractorWithParams<String, Resource<@JvmSuppressWildcards List<City>>>,
-    private val stringsProvider: StringsProvider
+    private val fetchCityInteractor: RetrieveSingleInteractorWithParams<String, Resource<@JvmSuppressWildcards List<City>>>
 ) : ViewModel() {
 
     val viewLiveData = ViewLiveData(CitiesListFragmentViewLiveData())
     private val viewLiveDataValue = viewLiveData.value
     val notificationEvent = SingleLiveEvent<Notification>()
 
-    //TODO remove, for testing only
-    val observer = Observer<CitiesListFragmentViewLiveData> {}
-
     fun getCity(cityAndCountryName: String) {
         viewLiveData.addSingleResourceSource(
             fetchCityInteractor.getSingle(cityAndCountryName),
-            { it -> manageFetchCityDataState(it) },
+            { manageFetchCityDataState(it) },
             { manageFetchCityLoadingState() },
             { error, _ -> manageFetchCityErrorState(error) }
         )
         viewLiveData.notifyLiveDataObservers()
-        viewLiveData.observeForever(observer)
     }
 
 
@@ -47,7 +40,7 @@ class CitiesListFragmentViewModel @Inject constructor(
         viewLiveDataValue.dataIsLoading = false
         handleLoading()
         citiesList
-            ?.let { viewLiveDataValue.citiesList = it }
+            .let { viewLiveDataValue.citiesList = it }
         viewLiveData.notifyLiveDataObservers()
     }
 
