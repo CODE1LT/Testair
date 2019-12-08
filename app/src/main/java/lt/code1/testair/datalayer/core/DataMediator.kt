@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package lt.ba.livedataexample.datalayer.core
+package lt.code1.testair.datalayer.core
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
