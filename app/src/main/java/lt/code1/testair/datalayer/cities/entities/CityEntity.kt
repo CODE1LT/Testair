@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 data class CityEntity(
     @PrimaryKey(autoGenerate = false)
     val rowId: Long,
-    val name: String,
-    val cityId: Long
+    val name: String?,
+    val cityId: Long?
 )

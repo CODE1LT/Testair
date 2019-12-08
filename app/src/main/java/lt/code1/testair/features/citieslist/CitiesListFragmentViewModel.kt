@@ -6,6 +6,7 @@ import lt.code1.testair.R
 import lt.code1.testair.archextensions.SingleLiveEvent
 import lt.code1.testair.archextensions.ViewLiveData
 import lt.code1.testair.datalayer.core.Resource
+import lt.code1.testair.domain.RetrieveSingleInteractor
 import lt.code1.testair.domain.RetrieveSingleInteractorWithParams
 import lt.code1.testair.features.citieslist.data.City
 import lt.code1.testair.features.shared.Notification
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 class CitiesListFragmentViewModel @Inject constructor(
     private val fragmentsListener: FragmentsListener,
-    private val fetchCityInteractor: RetrieveSingleInteractorWithParams<String, Resource<@JvmSuppressWildcards List<City>>>
+    private val fetchCityInteractor: RetrieveSingleInteractorWithParams<String, Resource<@JvmSuppressWildcards List<City>>>,
+    private val getCitiesListInteractor: RetrieveSingleInteractor<Resource<@JvmSuppressWildcards List<City>>>
 ) : ViewModel() {
 
     val viewLiveData = ViewLiveData(CitiesListFragmentViewLiveData())
@@ -30,6 +32,15 @@ class CitiesListFragmentViewModel @Inject constructor(
         viewLiveData.notifyLiveDataObservers()
     }
 
+    fun getSearchHistory() {
+        viewLiveData.addSingleResourceSource(
+            getCitiesListInteractor.getSingle(),
+            { manageFetchCityDataState(it) },
+            { manageFetchCityLoadingState() },
+            { error, _ -> manageFetchCityErrorState(error) }
+        )
+        viewLiveData.notifyLiveDataObservers()
+    }
 
     private fun manageFetchCityLoadingState() {
         viewLiveDataValue.dataIsLoading = true

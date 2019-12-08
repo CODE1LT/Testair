@@ -12,9 +12,9 @@ abstract class CitiesDao {
     abstract fun queryCities(): List<CityEntity>?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    protected abstract fun addCity(city: CityEntity)
+    abstract fun addCity(city: CityEntity)
 
     @Query("DELETE FROM cities WHERE rowId NOT IN (SELECT rowId FROM cities ORDER BY rowId DESC LIMIT $CITIES_SEARCH_HISTORY_SIZE_LIMIT)")
-    abstract fun deleteUser()
+    abstract fun cleanupSearchHistory()
 
 }
