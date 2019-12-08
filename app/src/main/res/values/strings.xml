@@ -3,4 +3,5 @@
     <string name="f_city_search_city_name_et_hint">ENTER CITY NAME</string>
     <string name="f_city_search_history_bt_text">VIEW HISTORY</string>
     <string name="i_city_tv_temperature_symbol_text">\u00B0</string>
+    <string name="f_city_search_tst_no_city_name">Please enter city name</string>
 </resources>

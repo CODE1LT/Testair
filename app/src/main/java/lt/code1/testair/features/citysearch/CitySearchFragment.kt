@@ -3,11 +3,13 @@ package lt.code1.testair.features.citysearch
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import lt.code1.testair.NavigationHost
 import lt.code1.testair.R
 import lt.code1.testair.base.BaseFragment
 import timber.log.Timber
 import androidx.lifecycle.Observer
+import es.dmoral.toasty.Toasty
 import lt.code1.testair.databinding.FragmentCitySearchBinding
 
 class CitySearchFragment : BaseFragment() {
@@ -44,9 +46,26 @@ class CitySearchFragment : BaseFragment() {
 
     private fun observeSearchButtonClickedEvent() {
         Timber.d("observeUserItemClickedEvent()")
-        citySearchFragmentViewModel.cityNameSubmitedEvent.observe(viewLifecycleOwner, Observer { cityName ->
-            navigationHost?.onSearchButtonClicked(cityName)
-        })
+        citySearchFragmentViewModel.cityNameSubmitedEvent.observe(
+            viewLifecycleOwner,
+            Observer { cityName ->
+                if (cityName.isNullOrEmpty()) {
+                    showUnsuccessNotification(R.string.f_city_search_tst_no_city_name)
+                } else {
+                    navigationHost?.onSearchButtonClicked(cityName)
+                }
+            })
+    }
+
+    private fun showUnsuccessNotification(messageId: Int) {
+        val toast = Toasty.error(
+            requireActivity(),
+            getString(messageId),
+            Toast.LENGTH_SHORT,
+            true
+        )
+        toast.setGravity(Gravity.TOP, 0, 80)
+        toast.show()
     }
 
     override fun onDetach() {
