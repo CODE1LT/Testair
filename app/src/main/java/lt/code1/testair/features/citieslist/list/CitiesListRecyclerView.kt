@@ -17,6 +17,6 @@ class CitiesListRecyclerView(context: Context, attributeSet: AttributeSet?) :
             .toInt()
             .let { MarginItemDecoration(it) }
             .let { addItemDecoration(it) }
-        this.adapter = CitiesListAdapter()
+        this.adapter = CitiesListAdapter(context)
     }
 }

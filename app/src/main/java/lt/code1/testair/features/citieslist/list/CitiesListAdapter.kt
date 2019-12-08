@@ -1,5 +1,6 @@
 package lt.code1.testair.features.citieslist.list
 
+import android.content.Context
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import lt.code1.testair.R
@@ -7,8 +8,11 @@ import lt.code1.testair.base.DataBindingAdapter
 import lt.code1.testair.databinding.ItemCityBinding
 import lt.code1.testair.features.citieslist.data.City
 import timber.log.Timber
+import javax.inject.Inject
 
-class CitiesListAdapter : DataBindingAdapter<City, RecyclerView.ViewHolder>() {
+class CitiesListAdapter (
+    private val context: Context
+) : DataBindingAdapter<City, RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int) = R.layout.item_city
 
@@ -22,6 +26,6 @@ class CitiesListAdapter : DataBindingAdapter<City, RecyclerView.ViewHolder>() {
         viewType: Int
     ): RecyclerView.ViewHolder {
         Timber.d("getDataBindingViewHolder()")
-        return CityItemViewHolder(binding as ItemCityBinding)
+        return CityItemViewHolder(context, binding as ItemCityBinding)
     }
 }
