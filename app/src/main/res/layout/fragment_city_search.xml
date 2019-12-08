@@ -85,6 +85,7 @@
             android:paddingEnd="50dp"
             android:paddingBottom="16dp"
             android:text="@{viewmodel.viewLiveData.historyButtonTitle}"
+            android:onClick="@{() -> viewmodel.onHistoryButtonClicked()}"
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintLeft_toLeftOf="parent"

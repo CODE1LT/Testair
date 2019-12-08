@@ -66,11 +66,13 @@ class CitiesListFragment : BaseFragment() {
 
     private fun observeNotificationEvent() {
         Timber.d("observeNotificationEvent()")
-        citiesListFragmentViewModel.notificationEvent.observe(viewLifecycleOwner, Observer { notification ->
-            if (!notification.isOperationSuccessfull) {
-                showFailureNotification(notification.unsuccessMessage)
-            }
-        })
+        citiesListFragmentViewModel.notificationEvent.observe(
+            viewLifecycleOwner,
+            Observer { notification ->
+                if (!notification.isOperationSuccessfull) {
+                    showFailureNotification(notification.unsuccessMessage)
+                }
+            })
     }
 
     private fun showFailureNotification(message: String) {
@@ -89,8 +91,11 @@ class CitiesListFragment : BaseFragment() {
     private fun loadCityData() {
         Timber.d("loadUserData()")
         args.cityName?.let {
-            //citiesListFragmentViewModel.getCity(it)
-            citiesListFragmentViewModel.getSearchHistory()
+            if (it != "") {
+                citiesListFragmentViewModel.getCity(it)
+            } else {
+                citiesListFragmentViewModel.getSearchHistory()
+            }
         }
     }
 

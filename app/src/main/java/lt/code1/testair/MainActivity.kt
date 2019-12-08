@@ -41,7 +41,7 @@ class MainActivity : BaseActivity(), CoroutineScope, NavigationHost,
         onSupportNavigateUp()
     }
 
-    override fun onSearchButtonClicked(cityName: String) {
+    override fun onSearchButtonClicked(cityName: String?) {
         Timber.d("onUserItemClicked()")
         val action = CitySearchFragmentDirections.actionCitySearchToCitiesList(cityName)
         findNavController(R.id.a_main_nav_host_fragment).navigate(action)

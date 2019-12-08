@@ -14,6 +14,7 @@ class CitySearchFragmentViewModel @Inject constructor(
     val viewLiveData = ViewLiveData(CitySearchFragmentViewLiveData())
     private val viewLiveDataValue = viewLiveData.value
     val cityNameSubmitedEvent = SingleLiveEvent<String>()
+    val retrieveSearchHistoryEvent = SingleLiveEvent<Unit>()
 
     init {
         setHistoryButtonText()
@@ -27,5 +28,9 @@ class CitySearchFragmentViewModel @Inject constructor(
 
     fun onSearchButtonClicked() {
         cityNameSubmitedEvent.postValue(viewLiveDataValue.searchText)
+    }
+
+    fun onHistoryButtonClicked() {
+        retrieveSearchHistoryEvent.call()
     }
 }

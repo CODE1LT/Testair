@@ -38,6 +38,7 @@ class CitySearchFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         addReferencesToViewsAndViewModel()
         observeSearchButtonClickedEvent()
+        observeHistoryButtonClickedEvent()
     }
 
     private fun addReferencesToViewsAndViewModel() {
@@ -60,6 +61,20 @@ class CitySearchFragment : BaseFragment() {
                     )
                     navigationHost?.onSearchButtonClicked(cityName)
                 }
+            })
+    }
+
+    private fun observeHistoryButtonClickedEvent() {
+        Timber.d("observeUserItemClickedEvent()")
+        citySearchFragmentViewModel.retrieveSearchHistoryEvent.observe(
+            viewLifecycleOwner,
+            Observer {
+                hideKeyboard(
+                    activity as Context,
+                    fragmentCitySearchBinding.fCitySearchCityNameEt
+                )
+                navigationHost?.onSearchButtonClicked("")
+
             })
     }
 
