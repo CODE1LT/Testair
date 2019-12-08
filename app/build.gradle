@@ -103,6 +103,10 @@ android {
         jvmTarget = "1.8"
     }
 
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
 }
 
 def androidx_version = '1.1.0'

@@ -4,6 +4,8 @@ data class City(
     val id: Long?,
     val name: String?,
     val dt: Long?,
+    val dayName: String?,
+    val dayNumber: String?,
     val temp: String?,
     val temp_min: Float?,
     val temp_max: Float?,

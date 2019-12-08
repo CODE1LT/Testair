@@ -14,6 +14,8 @@ class CityItemViewHolder(
             city.id,
             city.name,
             city.dt,
+            city.dayName,
+            city.dayNumber,
             city.temp,
             city.temp_min,
             city.temp_max,
