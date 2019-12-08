@@ -18,7 +18,7 @@ android {
         targetSdkVersion 29
         versionCode computedVersionCode
         versionName computedVersionName
-        testInstrumentationRunner "lt.code1.testair.CustomTestRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         applicationVariants.all { variant ->
             variant.outputs.all { output ->
                 outputFileName = "Testair-${variant.versionName}.apk"

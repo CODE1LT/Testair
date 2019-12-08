@@ -71,6 +71,7 @@ class CitiesListFragment : BaseFragment() {
             Observer { notification ->
                 if (!notification.isOperationSuccessfull) {
                     showFailureNotification(notification.unsuccessMessage)
+                    navigationHost?.onUpClick()
                 }
             })
     }
@@ -83,7 +84,7 @@ class CitiesListFragment : BaseFragment() {
             true
         )
             .apply {
-                setGravity(Gravity.CENTER, 0, 0)
+                setGravity(Gravity.TOP, 0, 80)
                 show()
             }
     }
