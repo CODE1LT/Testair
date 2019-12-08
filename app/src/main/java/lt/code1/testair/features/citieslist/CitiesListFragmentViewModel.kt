@@ -1,5 +1,6 @@
 package lt.code1.testair.features.citieslist
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import lt.code1.testair.FragmentsListener
 import lt.code1.testair.R
@@ -13,6 +14,7 @@ import lt.code1.testair.features.shared.Notification
 import javax.inject.Inject
 
 class CitiesListFragmentViewModel @Inject constructor(
+    private val context: Context,
     private val fragmentsListener: FragmentsListener,
     private val fetchCityInteractor: RetrieveSingleInteractorWithParams<String, Resource<@JvmSuppressWildcards List<City>>>,
     private val getCitiesListInteractor: RetrieveSingleInteractor<Resource<@JvmSuppressWildcards List<City>>>
@@ -67,9 +69,17 @@ class CitiesListFragmentViewModel @Inject constructor(
             Notification(
                 false,
                 R.string.f_cities_list_tst_completed_successfully_text,
-                errorMessage
+                getErrorMessage(errorMessage)
             )
         )
+    }
+
+    private fun getErrorMessage(message: String): String {
+        return if (message.contains("404", ignoreCase = true)) {
+            context.resources.getString(R.string.error_not_found)
+        } else {
+            message
+        }
     }
 
     private fun handleLoading() {
