@@ -16,7 +16,7 @@ class CitiesListMapper @Inject constructor() :
                     id = citiesListItem.id,
                     name = citiesListItem.name,
                     dt = citiesListItem.dt,
-                    temp = citiesListItem.temp,
+                    temp = citiesListItem.temp?.toInt().toString(),
                     temp_min = citiesListItem.temp_min,
                     temp_max = citiesListItem.temp_max,
                     icon = citiesListItem.icon,

@@ -22,24 +22,23 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@null"
             android:theme="@style/AppTheme"
+            app:layout_constraintBottom_toTopOf="@id/f_cities_list_recycler_view"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_up"
-            app:popupTheme="@style/AppTheme"/>
+            app:popupTheme="@style/AppTheme" />
 
-<!--        app:layout_constraintBottom_toTopOf="@id/f_cities_list_recycler_view"-->
-
-<!--        <lt.code1.testair.features.citieslist.list.CitiesListRecyclerView-->
-<!--            android:id="@+id/f_cities_list_recycler_view"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:background="@null"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintLeft_toLeftOf="parent"-->
-<!--            app:layout_constraintRight_toRightOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/f_cities_list_toolbar"-->
-<!--            app:viewData="@{viewmodel.viewLiveData.groupsAndUsersList}" />-->
+        <lt.code1.testair.features.citieslist.list.CitiesListRecyclerView
+            android:id="@+id/f_cities_list_recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/f_cities_list_toolbar"
+            app:viewData="@{viewmodel.viewLiveData.citiesList}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

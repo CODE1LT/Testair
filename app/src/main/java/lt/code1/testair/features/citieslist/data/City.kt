@@ -4,7 +4,7 @@ data class City(
     val id: Long?,
     val name: String?,
     val dt: Long?,
-    val temp: Float?,
+    val temp: String?,
     val temp_min: Float?,
     val temp_max: Float?,
     val icon: String?,
