@@ -2,6 +2,7 @@ package lt.code1.testair.features.citieslist.interactors
 
 import lt.code1.testair.datalayer.cities.entities.CitiesListEntity
 import lt.code1.testair.features.citieslist.data.City
+import lt.code1.testair.network.services.cities.pojos.Weather
 import javax.inject.Inject
 
 class CitiesListMapper @Inject constructor() :
@@ -20,11 +21,17 @@ class CitiesListMapper @Inject constructor() :
                     temp_min = citiesListItem.temp_min,
                     temp_max = citiesListItem.temp_max,
                     icon = citiesListItem.icon,
-                    description = citiesListItem.description
+                    description = getDescription(citiesListItem.description)
                 )
             )
         }
 
         return citiesListMapped
     }
+
+    private fun getDescription(weatherList: List<Weather>?):String {
+        val descriptionsList = weatherList?.map { it.description } as ArrayList
+        return descriptionsList.joinToString()
+    }
+
 }

@@ -9,6 +9,36 @@
       "main": "Clouds",
       "description": "broken clouds",
       "icon": "04n"
+    },
+    {
+      "id": 803,
+      "main": "Clouds",
+      "description": "mist",
+      "icon": "04n"
+    },
+    {
+      "id": 803,
+      "main": "Clouds",
+      "description": "rain",
+      "icon": "04n"
+    },
+    {
+      "id": 803,
+      "main": "Clouds",
+      "description": "storm",
+      "icon": "04n"
+    },
+    {
+      "id": 803,
+      "main": "Clouds",
+      "description": "thunder",
+      "icon": "04n"
+    },
+    {
+      "id": 803,
+      "main": "Clouds",
+      "description": "light hail",
+      "icon": "04n"
     }
   ],
   "base": "stations",

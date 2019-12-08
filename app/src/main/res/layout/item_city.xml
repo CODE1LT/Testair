@@ -124,15 +124,18 @@
 
         <TextView
             android:id="@+id/i_city_tv_weather_desrciption"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/weezerfont"
             android:paddingStart="10dp"
+            android:ellipsize="end"
+            android:singleLine="true"
             android:includeFontPadding="false"
             android:text="@{item.description}"
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@id/i_city_iv_weather_icon"
+            app:layout_constraintEnd_toStartOf="@id/right_guideline"
             app:layout_constraintTop_toTopOf="@id/i_city_iv_weather_icon"
             app:layout_constraintBottom_toBottomOf="@id/i_city_iv_weather_icon"
             tools:text="Broken clouds" />

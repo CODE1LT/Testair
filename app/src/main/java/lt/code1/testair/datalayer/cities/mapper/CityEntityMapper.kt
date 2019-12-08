@@ -17,7 +17,7 @@ class CityEntityMapper @Inject constructor() :
                 temp_min = cityResponse.main?.temp_min,
                 temp_max = cityResponse.main?.temp_max,
                 icon = cityResponse.weather?.get(0)?.icon,
-                description = cityResponse.weather?.get(0)?.description
+                description = cityResponse.weather
             )
         )
     }

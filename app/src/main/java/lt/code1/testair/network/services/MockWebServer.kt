@@ -39,7 +39,7 @@ class MockWebServer @Inject constructor() {
                 getMockResponse(
                     context,
                     "$RESPONSE_FILES_PATH/$RESPONSE_GET_USERS"
-                ).throttleBody(20, 1, TimeUnit.SECONDS)
+                ).throttleBody(300, 1, TimeUnit.SECONDS)
             } else {
                 MockResponse().setResponseCode(404)
             }
