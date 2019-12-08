@@ -1,6 +1,7 @@
 package lt.code1.testair.features.citieslist.list
 
 import android.content.Context
+import android.graphics.Color
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import lt.code1.testair.databinding.ItemCityBinding
@@ -10,8 +11,11 @@ import timber.log.Timber
 import javax.inject.Inject
 
 private const val WEATHER_ICON_TYPE = "@2x.png"
+private const val LOWEST_TEMPERATURE_BOUND = 10
+private const val MID_TEMPERATURE_BOUND_TOP = 20
+private const val MID_TEMPERATURE_BOUND_BOTTOM = 10
 
-class CityItemViewHolder (
+class CityItemViewHolder(
     private val context: Context,
     private val binding: ItemCityBinding
 ) : RecyclerView.ViewHolder(binding.root) {
@@ -29,8 +33,37 @@ class CityItemViewHolder (
             city.icon,
             city.description
         )
-        Glide.with(context).load(BASE_WEATHER_ICON_API_URL + city.icon + WEATHER_ICON_TYPE).
-            into(binding.iCityIvWeatherIcon)
+
+        setWeatherIcon(city.icon)
+        chooseCityCardColors(city.temp?.toInt() ?: 0)
         binding.executePendingBindings()
     }
+
+    private fun setWeatherIcon (weatherIcon: String?) {
+        Glide.with(context).load(BASE_WEATHER_ICON_API_URL + weatherIcon + WEATHER_ICON_TYPE)
+            .into(binding.iCityIvWeatherIcon)
+    }
+
+    private fun chooseCityCardColors(temperature: Int) {
+        when {
+            temperature <= LOWEST_TEMPERATURE_BOUND -> {
+                setCityCardColors(Color.YELLOW, Color.GREEN, Color.RED)
+            }
+            temperature in (MID_TEMPERATURE_BOUND_BOTTOM + 1) until MID_TEMPERATURE_BOUND_TOP -> {
+                setCityCardColors(Color.RED, Color.YELLOW, Color.GREEN)
+            }
+            else -> {
+                setCityCardColors(Color.GREEN, Color.RED, Color.YELLOW)
+            }
+        }
+    }
+
+    private fun setCityCardColors(nameColor: Int, temperatureColor: Int, dateColor: Int) {
+        binding.iCityTvCityName.setTextColor(nameColor)
+        binding.iCityTvTemperature.setTextColor(temperatureColor)
+        binding.iCityTvTemperatureSymbol.setTextColor(temperatureColor)
+        binding.iCityTvDayName.setTextColor(dateColor)
+        binding.iCityTvDayNumber.setTextColor(dateColor)
+    }
+
 }
