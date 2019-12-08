@@ -2,7 +2,8 @@ package lt.code1.testair.features.citieslist
 
 import android.content.Context
 import android.os.Bundle
-import android.view.*
+import android.view.Gravity
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -13,6 +14,7 @@ import lt.code1.testair.R
 import lt.code1.testair.base.BaseFragment
 import lt.code1.testair.databinding.FragmentCitiesListBinding
 import timber.log.Timber
+
 
 class CitiesListFragment : BaseFragment() {
 

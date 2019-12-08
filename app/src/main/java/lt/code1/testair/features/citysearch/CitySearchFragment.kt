@@ -1,8 +1,10 @@
 package lt.code1.testair.features.citysearch
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import lt.code1.testair.NavigationHost
 import lt.code1.testair.R
@@ -52,6 +54,10 @@ class CitySearchFragment : BaseFragment() {
                 if (cityName.isNullOrEmpty()) {
                     showUnsuccessNotification(R.string.f_city_search_tst_no_city_name)
                 } else {
+                    hideKeyboard(
+                        activity as Context,
+                        fragmentCitySearchBinding.fCitySearchCityNameEt
+                    )
                     navigationHost?.onSearchButtonClicked(cityName)
                 }
             })
@@ -66,6 +72,12 @@ class CitySearchFragment : BaseFragment() {
         )
         toast.setGravity(Gravity.TOP, 0, 80)
         toast.show()
+    }
+
+    private fun hideKeyboard(context: Context, view: View) {
+        val inputMethodManager =
+            context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     override fun onDetach() {
