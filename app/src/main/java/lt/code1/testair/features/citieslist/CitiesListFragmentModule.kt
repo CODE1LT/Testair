@@ -1,3 +1,4 @@
+@file:Suppress("unused")
 package lt.code1.testair.features.citieslist
 
 import androidx.lifecycle.ViewModel

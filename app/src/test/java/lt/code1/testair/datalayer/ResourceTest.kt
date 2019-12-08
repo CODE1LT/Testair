@@ -28,7 +28,6 @@ class ResourceTest {
     private val testString = "testString"
     private val testObject1 = TestObject1(testString)
     private val testObject2 = TestObject2(testString)
-    private val errorMessage = "msg"
     private val throwable = Throwable()
 
     @Before

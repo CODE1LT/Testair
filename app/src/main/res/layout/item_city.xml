@@ -121,7 +121,8 @@
             app:layout_constraintBottom_toTopOf="@id/i_city_tv_temperature"
             app:layout_constraintStart_toStartOf="@id/left_guideline"
             app:layout_constraintTop_toTopOf="@id/top_guideline"
-            tools:srcCompat="@drawable/ic_rain_for_testing" />
+            tools:srcCompat="@drawable/ic_rain_for_testing"
+            tools:ignore="ContentDescription"/>
 
         <TextView
             android:id="@+id/i_city_tv_weather_desrciption"

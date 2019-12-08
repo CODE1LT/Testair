@@ -7,8 +7,6 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import lt.code1.testair.datalayer.core.MapException
-import lt.code1.testair.datalayer.core.Resource
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 

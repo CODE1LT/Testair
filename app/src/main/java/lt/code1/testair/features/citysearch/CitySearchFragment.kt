@@ -78,6 +78,7 @@ class CitySearchFragment : BaseFragment() {
             })
     }
 
+    @Suppress("SameParameterValue")
     private fun showUnsuccessNotification(messageId: Int) {
         val toast = Toasty.error(
             requireActivity(),

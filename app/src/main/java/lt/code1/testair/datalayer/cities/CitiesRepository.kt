@@ -1,12 +1,13 @@
 package lt.code1.testair.datalayer.cities
 
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import lt.code1.testair.archextensions.*
+import lt.code1.testair.archextensions.SingleResourceLiveData
+import lt.code1.testair.archextensions.mapSingleResource
 import lt.code1.testair.datalayer.cities.entities.CitiesListEntity
 import lt.code1.testair.datalayer.cities.entities.CityEntity
-import lt.code1.testair.datalayer.core.*
+import lt.code1.testair.datalayer.core.RequestMediator
+import lt.code1.testair.datalayer.core.Resource
 import lt.code1.testair.extensions.unwrap
 import lt.code1.testair.network.services.cities.external.GetCitiesListService
 import lt.code1.testair.network.services.cities.external.GetCityService

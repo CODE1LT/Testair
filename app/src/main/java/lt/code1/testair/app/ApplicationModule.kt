@@ -9,6 +9,7 @@ import lt.code1.testair.utils.stringsprovider.StringsProviderModule
 @Module(includes = [StringsProviderModule::class])
 abstract class ApplicationModule {
 
+    @Suppress("unused")
     @Binds
     abstract fun provideContext(application: Application): Context
 }

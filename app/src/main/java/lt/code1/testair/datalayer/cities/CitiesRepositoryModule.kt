@@ -1,3 +1,4 @@
+@file:Suppress("unused")
 package lt.code1.testair.datalayer.cities
 
 import dagger.Binds

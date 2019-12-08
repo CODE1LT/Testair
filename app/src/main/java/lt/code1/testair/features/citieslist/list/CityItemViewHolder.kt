@@ -8,7 +8,6 @@ import lt.code1.testair.databinding.ItemCityBinding
 import lt.code1.testair.features.citieslist.data.City
 import lt.code1.testair.network.BASE_WEATHER_ICON_API_URL
 import timber.log.Timber
-import javax.inject.Inject
 
 private const val WEATHER_ICON_TYPE = "@2x.png"
 private const val LOWEST_TEMPERATURE_BOUND = 10

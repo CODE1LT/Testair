@@ -18,7 +18,6 @@ class LiveDataExtKtTest {
     private val testString2 = "testString2"
     private val testObject1 = TestObject1(testString)
     private val testObject12 = TestObject1(testString2)
-    private val testObject2 = TestObject2(testString)
 
     @Test
     fun `LiveData_getDistinct emits only distinct values when values are the same`() {

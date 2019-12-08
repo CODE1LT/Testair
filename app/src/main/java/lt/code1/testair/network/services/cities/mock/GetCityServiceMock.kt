@@ -4,7 +4,6 @@ import android.content.Context
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import lt.code1.testair.network.services.cities.external.GetCityService
-import lt.code1.testair.network.services.cities.mock.MockService
 import lt.code1.testair.network.services.cities.pojos.GetCityResponse
 import retrofit2.Response
 import java.lang.reflect.ParameterizedType

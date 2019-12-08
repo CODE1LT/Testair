@@ -1,3 +1,4 @@
+@file:Suppress("unused")
 package lt.code1.testair.utils.stringsprovider
 
 import dagger.Binds

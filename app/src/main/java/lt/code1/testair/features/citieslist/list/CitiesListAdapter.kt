@@ -8,7 +8,6 @@ import lt.code1.testair.base.DataBindingAdapter
 import lt.code1.testair.databinding.ItemCityBinding
 import lt.code1.testair.features.citieslist.data.City
 import timber.log.Timber
-import javax.inject.Inject
 
 class CitiesListAdapter (
     private val context: Context
