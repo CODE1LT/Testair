@@ -26,7 +26,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_up"
-            app:popupTheme="@style/AppTheme" />
+            app:popupTheme="@style/AppTheme"/>
 
 <!--        app:layout_constraintBottom_toTopOf="@id/f_cities_list_recycler_view"-->
 

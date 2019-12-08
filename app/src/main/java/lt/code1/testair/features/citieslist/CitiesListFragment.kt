@@ -3,6 +3,7 @@ package lt.code1.testair.features.citieslist
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.navArgs
 import lt.code1.testair.NavigationHost
 import lt.code1.testair.R
@@ -34,6 +35,7 @@ class CitiesListFragment : BaseFragment() {
         Timber.d("onViewCreated()")
         super.onViewCreated(view, savedInstanceState)
         addReferencesToViewsAndViewModel()
+        setupActionBar()
         loadCityData()
     }
 
@@ -41,6 +43,19 @@ class CitiesListFragment : BaseFragment() {
         Timber.d("addReferencesToViewsAndViewModel()")
         citiesListFragmentViewModel = getViewModel() as CitiesListFragmentViewModel
         fragmentCityListBinding = viewDataBinding as FragmentCitiesListBinding
+    }
+
+    private fun setupActionBar() {
+        Timber.d("setupActionBar()")
+        (activity as AppCompatActivity).setSupportActionBar(fragmentCityListBinding.fCitiesListToolbar)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
+        fragmentCityListBinding.fCitiesListToolbar.setNavigationOnClickListener { onUpClick() }
+    }
+
+    private fun onUpClick() {
+        Timber.d("onUpClick()")
+        navigationHost?.onUpClick()
     }
 
     private fun loadCityData() {
