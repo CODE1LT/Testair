@@ -3,8 +3,7 @@
 Best practices of clear, readable & extendable code applied. The reusable part of code has unit tests. Wheather information is retrieved from openweathermap.org API.
 
 ## Application screenshots
-![Testair app screenshot]( http://www.code1.lt/testair1.png)
-![Testair app screenshot]( http://www.code1.lt/testair2.png)
+<img src="http://www.code1.lt/testair1.png" width="400">  <img src="http://www.code1.lt/testair2.png" width="400">
 
 ## Technologies used
 MVVM/VIPER/MVI architecture mixture, Livedata, Navigation component, Data binding, Room, Coroutines, OkHTTP, Retrofit, Moshi, Airbnb Lottie, Glide, Mockito, Custom font
@@ -17,6 +16,7 @@ to retrieve cities list by city codes:
 api.openweathermap.org/data/2.5/group?id=524901,703448,2643743
 
 ## Answer example
+```json
 {
   "coord": {
     "lon": -0.13,
@@ -89,3 +89,4 @@ api.openweathermap.org/data/2.5/group?id=524901,703448,2643743
   "name": "London",
   "cod": 200
 }
+```
